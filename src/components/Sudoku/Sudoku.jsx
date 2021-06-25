@@ -27,7 +27,6 @@ const Sudoku = () => {
     setNewValue({ value: nv, note: false });
   };
 
-
   const valueButtons = Object.keys(_valueButtons).map((value) => {
     return (
       <button
@@ -46,6 +45,7 @@ const Sudoku = () => {
       <Board
         sudoku={_sudoku}
         changeValue={newValue}
+        setChangeValue={setNewValue}
       />
       <div style={{ margin: '20px', position: 'absolute' }}>
         {valueButtons}

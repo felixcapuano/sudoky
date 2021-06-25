@@ -28,15 +28,13 @@ const initBoard = (sudoku) => {
   return board;
 };
 
-const Board = ({ changeValue, sudoku }) => {
+const Board = ({ changeValue, setChangeValue, sudoku }) => {
   const [selectedCase, setSelectedCase] = useState({});
   const [board, setBoard] = useState(initBoard(sudoku));
 
-  if (
-    changeValue.value &&
-    !selectedCase?.validated
-  ) {
+  if (changeValue.value && !selectedCase?.validated) {
     board[selectedCase.y * 9 + selectedCase.x].value = changeValue.value;
+    setChangeValue({});
   }
 
   const eventHandler = (params) => {
@@ -53,9 +51,14 @@ const Board = ({ changeValue, sudoku }) => {
       return 'selected';
     }
 
-    if (cell.value === sc?.value) {
+    if (cell.value === sc?.value && cell.value !== 0) {
       return 'highlighted';
     }
+
+    if (cell.validated) {
+      return 'validated';
+    }
+
     return 'normal';
   };
 

@@ -1,19 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Case = ({ params, eventHandler, currentState }) => {
   const clickHandler = () => {
     if (eventHandler) eventHandler(params);
   };
 
+  const initialNote = {
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false,
+    6: false,
+    7: false,
+    8: false,
+    9: false,
+  }
+  const [note, setNote] = useState(initialNote);
+
   const states = {
     normal: {
       backgroundColor: 'whitesmoke',
     },
+    validated: {
+      backgroundColor: 'lightgreen'
+    },
     selected: {
-      backgroundColor: 'lightgreen',
+      backgroundColor: 'lightyellow',
     },
     highlighted: {
-      backgroundColor: 'lightblue',
+      backgroundColor: 'green',
     },
   };
 
